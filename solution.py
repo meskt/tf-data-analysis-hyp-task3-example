@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-from statsmodels.stats.weightstats import ztest
+from scipy.stats import mannwhitneyu
 
 chat_id = 1841341924 # Ваш chat ID, не меняйте название переменной
 
-def solution(x: np.array) -> bool: 
+def solution(x, y) -> bool: 
     alpha = 0.05
-    pvalue = ztest(x, value=500, alternative='smaller')[1]
-    return pvalue < alpha 
+    pvalue = mannwhitneyu(x, y, alternative='greater')[1]
+    return pvalue < alpha
